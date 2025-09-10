@@ -6,19 +6,25 @@ import com.eazybytes.acounts.entity.Customer;
 
 public class CustomerMapper {
 
-    public static CustomerDto maptoCustomerDto(Customer customer, CustomerDto customerdto){
+    public static CustomerDto maptoCustomerDto(Customer customer, CustomerDto customerDto) {
+        if (customer == null || customerDto == null) {
+            return null;
+        }
 
-        customerdto.setName(customer.getName());
-        customerdto.setEmail(customer.getEmail());
-        customerdto.setMobileNumber(customer.getMobileNumber());
-        return customerdto;
+        customerDto.setName(customer.getName());
+        customerDto.setEmail(customer.getEmail());
+        customerDto.setMobileNumber(customer.getMobileNumber());
+        return customerDto;
     }
 
-    public static Customer maptoCustomer(CustomerDto customerdto,Customer customer){
+    public static Customer maptoCustomer(CustomerDto customerDto, Customer customer) {
+        if (customerDto == null || customer == null) {
+            return null;
+        }
 
-        customer.setName(customerdto.getName());
-        customer.setEmail(customerdto.getEmail());
-        customer.setMobileNumber(customerdto.getMobileNumber());
+        customer.setName(customerDto.getName());
+        customer.setEmail(customerDto.getEmail());
+        customer.setMobileNumber(customerDto.getMobileNumber());
         return customer;
     }
 }

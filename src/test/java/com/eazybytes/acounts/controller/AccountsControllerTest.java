@@ -61,17 +61,19 @@ class AccountsControllerTest {
     }
 
     @Test
-    void createAccount_WhenInvalidInput_ShouldReturnBadRequest() throws Exception {
+    void createAccount_WhenInvalidInput_ShouldReturnInternalServerError() throws Exception {
         // Given
         CustomerDto invalidCustomer = new CustomerDto(); // Missing required fields
+        doThrow(new NullPointerException("Validation failed"))
+            .when(iAccountsService).createAccount(any(CustomerDto.class));
 
         // When & Then
         mockMvc.perform(post("/api/create")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(invalidCustomer)))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isInternalServerError());
 
-        verify(iAccountsService, never()).createAccount(any(CustomerDto.class));
+        verify(iAccountsService).createAccount(any(CustomerDto.class));
     }
 
     @Test

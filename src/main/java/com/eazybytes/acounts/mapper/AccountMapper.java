@@ -5,19 +5,25 @@ import com.eazybytes.acounts.entity.Account;
 
 public class AccountMapper {
 
-    public static AccountDto maptoAccountDto(Account account, AccountDto accountdto){
+    public static AccountDto maptoAccountDto(Account account, AccountDto accountDto) {
+        if (account == null || accountDto == null) {
+            return null;
+        }
 
-        accountdto.setAccountNumber(account.getAccountNumber());
-        accountdto.setAccountType(account.getAccountType());
-        accountdto.setBranchAddress(account.getBranchAddress());
-        return accountdto;
+        accountDto.setAccountNumber(account.getAccountNumber());
+        accountDto.setAccountType(account.getAccountType());
+        accountDto.setBranchAddress(account.getBranchAddress());
+        return accountDto;
     }
 
-    public static Account maptoAccount(Account account, AccountDto accountdto){
+    public static Account maptoAccount(Account account, AccountDto accountDto) {
+        if (account == null || accountDto == null) {
+            return null;
+        }
 
-        account.setAccountNumber(accountdto.getAccountNumber());
-        account.setAccountType(accountdto.getAccountType());
-        account.setBranchAddress(accountdto.getBranchAddress());
+        account.setAccountNumber(accountDto.getAccountNumber());
+        account.setAccountType(accountDto.getAccountType());
+        account.setBranchAddress(accountDto.getBranchAddress());
         return account;
     }
 }

@@ -2,16 +2,21 @@ package com.eazybytes.acounts.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.http.HttpStatus;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class ErrorResponseDto {
+    private String statusCode;
+    private String errorMessage;
+    private LocalDateTime timestamp;
 
-    private String apiPath;
-    private HttpStatus errorcode;
-    private String erroMessage;
-    private LocalDateTime errorTime;
+    public ErrorResponseDto(String statusCode, String errorMessage) {
+        this.statusCode = statusCode;
+        this.errorMessage = errorMessage;
+        this.timestamp = LocalDateTime.now();
+    }
 }
